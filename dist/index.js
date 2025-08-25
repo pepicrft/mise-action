@@ -50028,7 +50028,9 @@ async function run() {
         await miseLs();
         const loadEnv = core.getBooleanInput('env');
         if (loadEnv) {
-            const output = await exec.getExecOutput('mise', ['env', '--dotenv']);
+            const output = await exec.getExecOutput('mise', ['env', '--dotenv'], {
+                silent: true
+            });
             fs.appendFileSync(process.env.GITHUB_ENV, output.stdout);
         }
     }
